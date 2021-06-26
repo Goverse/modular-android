@@ -1,0 +1,28 @@
+//include ':app'
+//include ':modular_plugin'
+rootProject.name = "ModularProject"
+
+apply plugin: 'modular'
+// 外部依赖模块的引用配置，include 包含：moduleName, moduleDir, 比如："amodule", "D://amodule"
+ExternalDependency {
+    include "amodule" , "./modules/amodule"
+//    include "bmodule" , "./modules/bmodule"
+//    include "kernel" , "./kernel"
+//    include "common" , "./common"
+//    include "lib_base" , "./components/base/lib_base"
+//    include "lib_biz" , "./components/biz/lib_biz"
+}
+
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        maven() {
+            url uri(rootDir.toPath().toString() + "/maven")
+        }
+    }
+    dependencies {
+        classpath "com.goverse.plugin:modular:1.0.0"
+    }
+}

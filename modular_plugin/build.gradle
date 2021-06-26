@@ -1,0 +1,22 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation "com.android.tools.build:gradle:3.6.0"
+}
+
+uploadArchives{
+    repositories {
+        mavenDeployer {
+            repository(url: uri('../maven'))
+            pom.project{
+                groupId "com.goverse.plugin"
+                artifactId "modular"
+                version '1.0.0'
+            }
+        }
+    }
+}
